@@ -31,6 +31,7 @@ ALLOWED_HOSTS = ['127.0.0.1', 'localhost']
 # Application definition
 
 INSTALLED_APPS = [
+    "corsheaders",
     "users",
     "tasks",
     "django.contrib.sites",
@@ -47,6 +48,7 @@ INSTALLED_APPS = [
 ]
 
 MIDDLEWARE = [
+    "corsheaders.middleware.CorsMiddleware",
     "django.middleware.security.SecurityMiddleware",
     "allauth.account.middleware.AccountMiddleware",
     "django.contrib.sessions.middleware.SessionMiddleware",
@@ -152,3 +154,11 @@ LOGOUT_REDIRECT_URL = '/users/login/'
 
 SESSION_COOKIE_AGE = 1209600  # Two weeks
 SESSION_SAVE_EVERY_REQUEST = True  # Save session with each request
+
+CORS_ALLOWED_ORIGINS = [
+    "http://localhost:3000",  # React development server
+]
+
+STATICFILES_DIRS = [
+    BASE_DIR / "tasks" / "static" / "tasks" / "build" / "static",
+]
