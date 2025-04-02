@@ -1,10 +1,30 @@
 {% extends "tasks/layout.html" %}
-
-{% load static %}
-
 {% block content %}
-<div id="root"></div> <!-- React will mount here -->
-{% endblock %}
-{% block scripts %}
-<script src="{% static 'tasks/build/static/js/main.js' %}"></script>
+<h1>Task List by Category</h1>
+<ul id="category-list">
+    {% for category in categories %}
+        <li>
+            <strong>{{ category.name }}</strong>
+            <ul>
+                {% for subcategory in category.subcategories.all %}
+                    <li>
+                        <strong>{{ subcategory.name }}</strong>
+                        <ul>
+                            {% for task in subcategory.tasks.all %}
+                                <li>{{ task.name }}</li>
+                            {% empty %}
+                            {% endfor %}
+                        </ul>
+                    </li>
+                {% endfor %}
+                {% for task in category.tasks.all %}
+                    <li>{{ task.name }}</li>
+                {% empty %}   
+                {% endfor %}
+            </ul>
+        </li>
+    {% empty %}
+    {% endfor %}
+</ul>
+<a href="{% url 'tasks:add' %}">Add a New Task</a>
 {% endblock %}
