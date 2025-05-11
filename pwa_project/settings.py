@@ -163,3 +163,6 @@ CORS_ALLOWED_ORIGINS = [
 STATICFILES_DIRS = [
     BASE_DIR / "tasks" / "static" / "tasks" / "build" / "static",
 ]
+
+ACCOUNT_EMAIL_VERIFICATION = "none"
+ACCOUNT_EMAIL_REQUIRED = False
